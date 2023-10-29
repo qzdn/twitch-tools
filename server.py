@@ -13,9 +13,11 @@ load_dotenv()
 LASTFM_API_KEY = os.environ.get('LASTFM_API_KEY')
 OPENWEATHERMAP_API_KEY = os.environ.get('OPENWEATHERMAP_API_KEY')
 
+
 @app.route('/')
 def main_page():
-    return ":)"
+    return ':)'
+
 
 @app.route('/lastfm/<string:username>')
 def get_now_playing_track(username):
@@ -25,15 +27,16 @@ def get_now_playing_track(username):
 
     try:
         track_info = data['recenttracks']['track'][0]
-        if (('@attr' in track_info) and (track_info['@attr']['nowplaying'] == 'true')):
-                track = track_info['name']
-                artist = track_info['artist']['#text']
-                return f"{artist} - {track}"
+        if '@attr' in track_info and track_info['@attr']['nowplaying'] == 'true':
+            track = track_info['name']
+            artist = track_info['artist']['#text']
+            return f'{artist} - {track}'
         else:
-            return f"Сейчас ничего не скробблится"
+            return f'Сейчас ничего не скробблится'
     except:
-        return f"Ошибка получения данных"
-    
+        return f'Ошибка получения данных'
+
+
 @app.route('/weather/<string:city>')
 def get_weather(city):
     url = f'http://api.openweathermap.org/data/2.5/weather?q={city}&appid={OPENWEATHERMAP_API_KEY}&units=metric&lang=ru'
@@ -52,13 +55,11 @@ def get_weather(city):
         directions = ['С', 'СВ', 'В', 'ЮВ', 'Ю', 'ЮЗ', 'З', 'СЗ']
         wind_direction = directions[round(wind_degree / (360. / len(directions))) % len(directions)]
 
-        return f"""{city} - сейчас {weather_description}. Температура - {round(temp)}°C (по ощущению {round(temp_feel)}°C). 
-            Ветер - {wind_direction}, {wind_speed} м/с. 
-            Влажность - {humidity}%, давление ~{round(pressure/1.333, 1)} мм рт.ст.
-            """
+        return f'{city} - сейчас {weather_description}. Температура - {round(temp)}°C (по ощущению {round(temp_feel)}°C). Ветер - {wind_direction}, {wind_speed} м/с. Влажность - {humidity}%, давление ~{round(pressure/1.333, 1)} мм рт.ст.'
     else:
-        return f"Не получилось узнать погоду в г.{city} :("
+        return f'{city} - не получилось узнать погоду :('
+
 
 if __name__ == '__main__':
-    serve(app, host="0.0.0.0", port="8080")
-    #app.run(host='0.0.0.0', port=6789, debug=True)
+    serve(app, host='0.0.0.0', port='8080')
+    # app.run(host='0.0.0.0', port=6789, debug=True)
