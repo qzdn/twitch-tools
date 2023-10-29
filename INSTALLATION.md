@@ -11,7 +11,7 @@ cd ./twitch-tools
 python -m venv venv 
 ```
 ```bash
-./venv/Scripts/activate
+source ./venv/bin/activate
 ```
 ```bash
 pip install -r requirements.txt
@@ -27,7 +27,7 @@ echo LASTFM_API_KEY=123 >> .env
 echo OPENWEATHERMAP_API_KEY=123 >> .env
 ```
 ```bash
-python3 ./server.py
+python ./server.py
 ```
 Далее в StreamElements (или любом другом боте) добавить кастомные команды:
 ```
