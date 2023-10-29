@@ -47,3 +47,9 @@ pip3 install -r requirements.txt
 python3 ./server.py
 ```
 - Проверить, что всё работает по адресу проекта: `https://PROJECT_NAME.glitch.me/`
+
+В StreamElements (или любом другом боте) добавить кастомные команды:
+```
+@${touser}, ${customapi.https://https://PROJECT_NAME.glitch.me/lastfm/LASTFM_USERNAME}
+@${touser}, ${customapi.https://PROJECT_NAME.glitch.me/weather/${pathescape ${1:}}}
+```
