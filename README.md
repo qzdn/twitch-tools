@@ -5,4 +5,5 @@
 - [ ] OpenWeatherMap
   - [x] Текущая погода
   - [ ] Прогноз
+- [x] HLTB
 - [ ] Steam

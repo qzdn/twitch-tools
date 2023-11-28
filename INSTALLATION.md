@@ -33,6 +33,7 @@ python ./server.py
 ```
 @${touser}, ${customapi.https://SERVER_IP:8080/lastfm/LASTFM_USERNAME}
 @${touser}, ${customapi.https://SERVER_IP:8080/weather/${pathescape ${1:}}}
+@${touser}, ${customapi.https://SERVER_IP:8080/hltb/${pathescape ${1:}}}
 ```
   
 ## glitch.com
@@ -52,4 +53,5 @@ python3 ./server.py
 ```
 @${touser}, ${customapi.https://https://PROJECT_NAME.glitch.me/lastfm/LASTFM_USERNAME}
 @${touser}, ${customapi.https://PROJECT_NAME.glitch.me/weather/${pathescape ${1:}}}
+@${touser}, ${customapi.https://PROJECT_NAME.glitch.me/hltb/${pathescape ${1:}}}
 ```
