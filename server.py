@@ -16,7 +16,7 @@ OPENWEATHERMAP_API_KEY = os.environ.get('OPENWEATHERMAP_API_KEY')
 
 @app.route('/')
 def main_page():
-    return ":)"
+    return ':)'
 
 @app.route('/lastfm/<string:username>')
 def get_now_playing_track(username):
@@ -29,11 +29,11 @@ def get_now_playing_track(username):
         if (('@attr' in track_info) and (track_info['@attr']['nowplaying'] == 'true')):
                 track = track_info['name']
                 artist = track_info['artist']['#text']
-                return f"{artist} - {track}"
+                return f'{artist} - {track}'
         else:
-            return f"Сейчас ничего не скробблится"
+            return f'Сейчас ничего не скробблится'
     except:
-        return f"Ошибка получения данных"
+        return f'Ошибка получения данных'
     
 @app.route('/weather/<string:city>')
 def get_weather(city):
@@ -53,20 +53,20 @@ def get_weather(city):
         directions = ['С', 'СВ', 'В', 'ЮВ', 'Ю', 'ЮЗ', 'З', 'СЗ']
         wind_direction = directions[round(wind_degree / (360. / len(directions))) % len(directions)]
 
-        return f"""{city} - сейчас {weather_description}. Температура - {round(temp)}°C (по ощущению {round(temp_feel)}°C). 
+        return f'''{city} - сейчас {weather_description}. Температура - {round(temp)}°C (по ощущению {round(temp_feel)}°C). 
             Ветер - {wind_direction}, {wind_speed} м/с. 
             Влажность - {humidity}%, давление ~{round(pressure/1.333, 1)} мм рт.ст.
-            """
+            '''
     else:
-        return f"Не получилось узнать погоду в г.{city} :("
+        return f'Не получилось узнать погоду в г.{city} :('
       
 @app.route('/hltb/<string:game_name>')
 def hltb(game_name):
     results_list = HowLongToBeat().search(game_name)
     if results_list is not None and len(results_list) > 0:
         best_element = max(results_list, key=lambda element: element.similarity)
-        return f"{best_element.game_name} :: Main story - {best_element.main_story} ч., Main+Extras - {best_element.main_extra} ч., Completionist - {best_element.completionist} ч."
+        return f'{best_element.game_name} :: Main story - {best_element.main_story} ч., Main+Extras - {best_element.main_extra} ч., Completionist - {best_element.completionist} ч.'
 
 if __name__ == '__main__':
-    serve(app, host="0.0.0.0", port="8080")
+    serve(app, host='0.0.0.0', port='8080')
     #app.run(host='0.0.0.0', port=6789, debug=True)
